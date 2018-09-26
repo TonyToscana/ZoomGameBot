@@ -5,7 +5,7 @@ import java.util.*;
  * Created by Oreki on 25/09/2018.
  */
 class PixelSearch {
-    private static final int WHITE_VALUE = -8978432;
+    public static final int WHITE = -8978432;
 
     /*
      * BFS based search around current pointer location for black pixels
@@ -19,7 +19,7 @@ class PixelSearch {
         while(!cola.isEmpty()) {
             Point current = cola.poll();
 
-            if(robot.getPixelColor(current.x, current.y).getRGB() < WHITE_VALUE) {
+            if(robot.getPixelColor(current.x, current.y).getRGB() < WHITE) {
                 return new Point(current.x,current.y);
             }
             for (Point next:
