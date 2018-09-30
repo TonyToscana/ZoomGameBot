@@ -7,3 +7,7 @@ Currently it is quick enough to follow the game until around 25k points with the
 **TODO**
 - [ ] Implement more sophisticated behavior.
 - [ ] Improve performance (if possible).
+
+Achieves around 25k if you are lucky:
+
+![score-screenshot](./img/score.png)
