@@ -18,7 +18,7 @@ public class GlobalKeyListener implements NativeKeyListener {
     }
 
     public void nativeKeyPressed(NativeKeyEvent e) {
-        System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
+        //System.out.println("Key Pressed: " + NativeKeyEvent.getKeyText(e.getKeyCode()));
 
         //Exit program ESC key
         if (e.getKeyCode() == NativeKeyEvent.VC_ESCAPE) {
@@ -30,7 +30,6 @@ public class GlobalKeyListener implements NativeKeyListener {
         }
         //Stop bot DOWN key
         if (e.getKeyCode() == NativeKeyEvent.VC_DOWN) {
-            System.out.println("DOWN pressed");
             bot.stop();
         }
     }
@@ -44,10 +43,9 @@ public class GlobalKeyListener implements NativeKeyListener {
     }
 
     public void start() {
-        // Get the logger for "org.jnativehook" and set the level to off.
+        // Disable log
         Logger logger = Logger.getLogger(GlobalScreen.class.getPackage().getName());
         logger.setLevel(Level.OFF);
-        // Don't forget to disable the parent handlers.
         logger.setUseParentHandlers(false);
 
         try {

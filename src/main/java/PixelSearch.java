@@ -1,41 +1,46 @@
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Oreki on 25/09/2018.
  */
 class PixelSearch {
-    public static final int WHITE = -8978432;
+    static final int CURSOR_COLOR = -8978432;
+    private static final int fieldBounds = 862;
+    static final Rectangle area = new Rectangle(Bot.xFieldCompensation, Bot.yFieldCompensation, fieldBounds, fieldBounds);
 
     /*
-     * BFS based search around current pointer location for black pixels
+     * BFS based search around location for black pixels
      */
-    static Point searchPixel(Robot robot, Point location) {
+    static Point searchPixel(BufferedImage img, Point location) {
         Queue<Point> cola = new LinkedList<>();
+        Map<Point, Boolean> visited = new HashMap<>();
         cola.add(location);
-        java.util.List<Point> visited = new ArrayList<>();
-        visited.add(location);
+        visited.put(location, true);
 
         while(!cola.isEmpty()) {
             Point current = cola.poll();
 
-            if(robot.getPixelColor(current.x, current.y).getRGB() < WHITE) {
+            if(img.getRGB(current.x, current.y) < CURSOR_COLOR) {
                 return new Point(current.x,current.y);
             }
+
             for (Point next:
                     neighbors(current)) {
-
-                if(!visited.contains(next)) {
+                if(!visited.containsKey(next)) {
                     cola.add(next);
-                    visited.add(next);
+                    visited.put(next, true);
                 }
             }
         }
+
         return null;
     }
 
-    private static java.util.List<Point> neighbors(Point current) {
-        java.util.List<Point> neighbors = new ArrayList<>();
+    private static List<Point> neighbors(Point current) {
+        List<Point> neighbors = new ArrayList<>();
 
         neighbors.add(new Point(current.x+1, current.y));
         neighbors.add(new Point(current.x-1, current.y));
